@@ -1,13 +1,16 @@
 #Create a Cloud Storage bucket 
 gsutil mb -p [your project id] -l asia gs://[any bucket name]
-
-
 export PROJECT_ID=kinetic-object-400913
-SA_NAME=$(gcloud sql instances describe demo-sql-server --project=$PROJECT_ID --format="value(serviceAccountEmailAddress)")
+export BUCKET_NAME=kinetic-object-400913-mysql-demo-auto-backup
+gsutil mb -p $PROJECT_ID -l asia gs://$BUCKET_NAME
+
+
+
+export SA_NAME=$(gcloud sql instances describe demo-mysql --project=$PROJECT_ID --format="value(serviceAccountEmailAddress)")
 
 #Grant write access to the service account
 
-gsutil acl ch -u ${SA_NAME}:W gs://[your bucket name]
+gsutil acl ch -u ${SA_NAME}:W gs://$BUCKET_NAME
 
 
 #Describe the instance you are importing to:
