@@ -15,4 +15,5 @@ CREATE TABLE entries (guestName VARCHAR(255), content VARCHAR(255),
 #insert data in tables 
 INSERT INTO entries (guestName, content) values ("first guest", "I got here!");
 INSERT INTO entries (guestName, content) values ("second guest", "Me too!");
-
+#show tables data 
+SELECT * FROM entries;
